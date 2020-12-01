@@ -9,7 +9,7 @@ import pexpect.fdpexpect
 device = pexpect.fdpexpect.fdspawn(os.open("COM3", os.O_RDWR))
 ```
 
-But using this method cannot change the baud rate or data bits ot etc. And you have to deal with the serial device's input/output buffered stuff. It's very annoying.
+But using this method cannot change the baud rate or data bits or etc. And you have to deal with the serial device's input/output buffered stuff. It's very annoying.
 
 # Main Idea
 
