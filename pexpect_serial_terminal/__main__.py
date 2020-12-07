@@ -89,7 +89,7 @@ def main(argv=None):
             ["port=","baud-rate=","data-bits=","parity=","stop-bits=","soft-flow-ctl=","hard-flow-ctl="])
     except getopt.GetoptError:
         usage()
-        sys.exit(2)
+        sys.exit(1)
 
     config['port'] = None
     config['baud-rate'] = 115200
@@ -142,6 +142,7 @@ def main(argv=None):
     port = open_serial_port(config)
     if not port.is_open:
         print('serial port cannot open, please check your port settings!')
+        sys.exit(1)
     terminal = SerialTerminal(port)
     terminal.start()
 

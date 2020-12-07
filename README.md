@@ -27,7 +27,7 @@ Install directly. Clone this repository, and then:
 
     pip install .
 
-# Verify This Module
+# Verify Serial Device With Module
 
 Use the help command to find out the parameters.
 
@@ -66,7 +66,7 @@ Ex:
         Hardware flow control switch.
 ```
 
-Use this terminal to verify the device. This terminal is too simple to do the terminal well. It doesn't have input buffer to manipulate the content, so it doesn't support dos key function. I strongly suggest you should only use this terminal for testing or automatic script, don't use it as pure terminal.
+Use this terminal to verify the serial device. This terminal is too simple to do the terminal well. It doesn't have input buffer to manipulate the content, so it doesn't support dos key function. I strongly suggest you should only use this terminal for testing or automatic script, don't use it as pure terminal.
 
     python -m pexpect_serial_terminal -p COM3
 
@@ -76,7 +76,7 @@ Exit the terminal
 
 # How To Use It With Pexpect
 
-You can also see the tests folder for the pytest example with this module.
+You can also see the tests folder for the `pytest example` with this module.
 
 start the child process on Windows:
 
