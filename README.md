@@ -74,7 +74,7 @@ Exit the terminal
 
     Ctl+C
 
-# How To Use It With Pexpect
+# How To Use It With Pexpect?
 
 You can also see the tests folder for the `pytest example` with this module.
 

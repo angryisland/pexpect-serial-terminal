@@ -32,6 +32,7 @@ class SerialDevice():
 
     def close(self):
         self.process.write('\x03')
+        self.process.wait()
 
     def run(self, command, timeout=3):
         self.process.sendline(command)
