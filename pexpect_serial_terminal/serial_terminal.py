@@ -76,6 +76,8 @@ if __name__ == '__main__':
         char = sys.stdin.read(1)
         if char == '\x03': # Ctl-C
             break
+        if char == '\n':
+            terminal.write('\r')
         terminal.write(char)
 
     terminal.abort()
