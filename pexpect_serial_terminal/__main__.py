@@ -9,6 +9,9 @@ from ._version import __version__ as version
 help_string = 'Usage: %s [option] <parameter>\nThe option and option\'s parameter list below:\n' \
     'Ex:\n' \
     '\t%s -p COM3 -b 115200\n\n' \
+    '-c\n' \
+    '\tAdd CR before LF when you change a new line.\n' \
+    \
     '-p | --port\n' \
     '\t[ default value: None ]\n' \
     '\tSerial port name.\n' \
@@ -85,7 +88,7 @@ def main(argv=None):
         argv = sys.argv[1:]
     config = {}
     try:
-        opts, _ = getopt.getopt(argv, "hp:b:w:r:s:x:f:", \
+        opts, _ = getopt.getopt(argv, "hcp:b:w:r:s:x:f:", \
             ["port=","baud-rate=","data-bits=","parity=","stop-bits=","soft-flow-ctl=","hard-flow-ctl="])
     except getopt.GetoptError:
         usage()
@@ -98,11 +101,14 @@ def main(argv=None):
     config['stop-bits'] = '1'
     config['soft-flow-ctl'] = False
     config['hard-flow-ctl'] = False
+    addcr = False
 
     for opt, arg in opts:
         if opt == '-h':
             usage()
             sys.exit()
+        elif opt == '-c':
+            addcr = True
         elif opt in ("-p", "--port"):
             config['port'] = arg
         elif opt in ("-b", "--baud-rate"):
@@ -150,6 +156,8 @@ def main(argv=None):
         char = sys.stdin.read(1)
         if char == '\x03': # Ctl-C
             break
+        if addcr and char == '\n':
+            terminal.write('\r')
         terminal.write(char)
 
     terminal.abort()
