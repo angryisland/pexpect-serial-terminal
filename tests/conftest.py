@@ -36,7 +36,7 @@ class SerialDevice():
 
     def run(self, command, timeout=3):
         self.process.sendline(command)
-        self.process.expect(self.prompt, timeout)
+        self.process.expect(self.prompt, timeout=timeout)
         output = self.process.before.decode('utf-8')
         print('\n<serial output>\ncommand:', output)
         return output
