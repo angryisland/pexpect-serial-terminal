@@ -56,8 +56,8 @@ class SerialTerminal():
         self.serial_thread = threading.Thread(target = serial_handler, args = (self.option,))
         self.serial_thread.start()
 
-    def write(self, char):
-        self.option['port'].write(char.encode('utf-8'))
+    def write(self, data):
+        self.option['port'].write(data.encode('utf-8'))
 
     def abort(self):
         global exit_terminal
@@ -68,7 +68,7 @@ class SerialTerminal():
         return not exit_terminal
 
 if __name__ == '__main__':
-    port = serial.Serial('COM3', 115200, timeout=0)
+    port = serial.Serial('/dev/ttyUSB0', 115200, timeout=0)
     terminal = SerialTerminal(port)
     terminal.start()
 
@@ -78,7 +78,8 @@ if __name__ == '__main__':
             break
         if char == '\n':
             terminal.write('\r')
-        terminal.write(char)
+        else:
+            terminal.write(char)
 
     terminal.abort()
     port.close()

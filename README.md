@@ -38,8 +38,10 @@ The option and option's parameter list below:
 Ex:
         __main__.py -p COM3 -b 115200
 
--c
-        Add CR before LF when you change a new line.
+-l | --line-ending
+        [ default value: LF ]
+        < LF | CR | CRLF >
+        Device line ending.
 -p | --port
         [ default value: None ]
         Serial port name.
